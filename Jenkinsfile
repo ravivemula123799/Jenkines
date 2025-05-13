@@ -4,13 +4,15 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/ravivemula123799/Jenkines.git'
+                script {
+                    sh 'git clone https://github.com/ravivemula123799/Jenkines.git'
+                }
             }
         }
 
-        stage('Run Python Script') {
+        stage('Build') {
             steps {
-                sh 'python3 gopi.py'
+                echo 'Building the project'
             }
         }
     }
