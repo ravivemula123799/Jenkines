@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Git Repo') {
+            steps {
+                git 'https://github.com/ravivemula123799/c_jenkins.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh '''
+                    which gcc || sudo apt-get update && sudo apt-get install -y gcc
+                    which python3 || sudo apt-get install -y python3
+                '''
+            }
+        }
+
+        stage('Run Python to Compile & Execute C') {
+            steps {
+                sh 'python3 run_c_via_python.py'
+            }
+        }
+    }
+}
